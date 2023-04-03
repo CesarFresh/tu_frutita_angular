@@ -1,0 +1,86 @@
+<div class="card">
+    <div class="card-body">
+        <div class="mb-32" fxLayout="row" fxLayoutAlign="space-between end" >
+            <h4> {{ actionName }} Usuario </h4>
+            <div fxLayout="row" fxLayoutAlign="end end" >
+              <button mat-raised-button class="me-8 mb-8" color="warn" (click)="deleteUser(idUser)" *ngIf="actionName === 'Actualizar' && !canDelete">
+                <i-feather name="trash" class="feather-base mb-12"></i-feather>
+              </button>
+              <button mat-raised-button class="me-8 mb-8" color="basic" (click)="back()">
+                <i-feather name="corner-down-left" class="feather-base mb-12"></i-feather>
+              </button>
+            </div>
+        </div>
+        <form [formGroup]="userForm"  (ngSubmit)="onSubmit()">
+            <span *ngIf="userForm.get('nombre')?.invalid && userForm.get('nombre')?.touched">
+              <mat-error *ngIf="hasError('nombre', 'required')">El nombre es requerido</mat-error>
+              <mat-error *ngIf="hasError('nombre', 'maxlength')">Tu nombre no de debe tener más de 15 caracteres</mat-error>
+              <mat-error *ngIf="hasError('nombre', 'minlength')">Tu nombre no debe tener menos de 3 caracteres</mat-error>
+              <mat-error *ngIf="hasError('nombre', 'pattern')">Favor de solo escribir letras</mat-error>
+            </span>
+            <mat-form-field class="w-100 fs-16" appearance="outline">
+              <mat-label>Nombre</mat-label>
+              <input matInput type="text" formControlName="nombre" placeholder="Ingresa tu nombre" name="nombre">
+            </mat-form-field>
+
+            <span *ngIf="userForm.get('apellido')?.invalid && userForm.get('apellido')?.touched">
+              <mat-error *ngIf="hasError('apellido', 'required')">El nombre es requerido</mat-error>
+              <mat-error *ngIf="hasError('apellido', 'maxlength')">Tu apellido no de debe tener más de 15 caracteres</mat-error>
+              <mat-error *ngIf="hasError('apellido', 'minlength')">Tu apellido no debe tener menos de 3 caracteres</mat-error>
+              <mat-error *ngIf="hasError('apellido', 'pattern')">Favor de solo escribir letras</mat-error>
+            </span>
+            <mat-form-field class="w-100 fs-16" appearance="outline">
+              <mat-label>Apellido</mat-label>
+              <input matInput type="text" formControlName="apellido" placeholder="Ingresa tu apellido" name="apellido">
+            </mat-form-field>
+
+
+            <div *ngIf="actionName === 'Nuevo'">
+              <span *ngIf="userForm.get('username')?.invalid && userForm.get('username')?.touched">
+                <mat-error *ngIf="hasError('username', 'required')">El nombre de usuario es requerido</mat-error>
+                <mat-error *ngIf="hasError('username', 'maxlength')">El nombre de usuario no debe tener más de 15 caracteres</mat-error>
+                <mat-error *ngIf="hasError('username', 'minlength')">El nombre de usuario no debe tener menos de 3 caracteres</mat-error>
+                <mat-error *ngIf="hasError('username', 'pattern')">El nombre de usuario no es valido</mat-error>
+              </span>
+              <mat-form-field class="w-100 fs-16" appearance="outline">
+                <mat-label>Usuario</mat-label>
+                <input matInput type="text" formControlName="username" placeholder="Ingresa tu usernamenombre de usuario" name="username">
+              </mat-form-field>
+              <span *ngIf="userForm.get('correo')?.invalid && userForm.get('correo')?.touched">
+                <mat-error *ngIf="hasError('correo', 'required')">El correo es requerido</mat-error>
+                <mat-error *ngIf="hasError('correo', 'maxlength')">El correo no debe tener más de 45 caracteres</mat-error>
+                <mat-error *ngIf="hasError('correo', 'minlength')">El correo no debe tener menos de 5 caracteres</mat-error>
+                <mat-error *ngIf="hasError('correo', 'pattern')">Formato de correo no valido</mat-error>
+              </span>
+              <mat-form-field class="w-100 fs-16" appearance="outline">
+                <mat-label>Correo</mat-label>
+                <input matInput type="email" formControlName="correo" placeholder="Ingresa tu correo" name="correo">
+              </mat-form-field>
+
+              <h4 class="mb-32"> Contraseña </h4>
+              <span *ngIf="userForm.get('correo')?.invalid && userForm.get('correo')?.touched">
+                <mat-error *ngIf="hasError('password', 'required')">La contraseña es requerida</mat-error>
+                <mat-error *ngIf="hasError('password', 'pattern')">La contraseña debe tener minimo 8 caracteres, una letra mayuscula, una minuscula y un número.</mat-error>
+              </span>
+              <mat-form-field class="w-100 fs-16" appearance="outline">
+                <mat-label>Contraseña</mat-label>
+                <input matInput type="password" formControlName="password" placeholder="Ingresa tu contraseña" name="password">
+              </mat-form-field>
+              <span *ngIf="userForm.get('correo')?.invalid && userForm.get('correo')?.touched">
+                <mat-error *ngIf="hasError('password1', 'required')">La contraseña es requerida</mat-error>
+                <mat-error *ngIf="hasError('password1', 'pattern')">La contraseña debe tener minimo 8 caracteres, una letra mayuscula, una minuscula y un número.</mat-error>
+              </span>
+              <mat-form-field class="w-100 fs-16" appearance="outline">
+                <mat-label>Repite tu contraseña</mat-label>
+                <input matInput type="password" formControlName="password1" placeholder="Repite tu contraseña" name="password1">
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="end center" >
+              <button mat-raised-button color="primary" [disabled]="!userForm.valid">
+                <i-feather name="save" class="feather-base mb-12"></i-feather>
+              </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+
+<div class="login-section" fxLayout="row" fxFlex="grow" fxLayoutAlign="space-around center" fxLayoutGap="30px">
+  <div class="card">
+    <div class="card-body">
+      <mat-card-title class="text-center">
+        <h3 class="mb-32">Accede a tu cuenta:</h3>
+      </mat-card-title>
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="!loginValid">
+          <alerts></alerts>
+        </div>
+        <mat-form-field class="w-100 fs-16 mt-5" appearance="outline">
+          <mat-label>Usuario</mat-label>
+          <input matInput placeholder="Email" [(ngModel)]="username" name="username" required placeholder="Ingresa tu usuario">
+          <mat-error>
+            Por favor ingresa un email valido.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100 fs-16" appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required placeholder="Ingresa tu contraseña">
+          <mat-error>
+            Por favor ingrea una contraseña valida.
+          </mat-error>
+        </mat-form-field>
+        <div class="text-center">
+          <button  mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Entrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

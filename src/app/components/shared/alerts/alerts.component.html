@@ -1,0 +1,9 @@
+<div *ngFor="let alert of alerts" class="{{cssClass(alert)}} mb-12" fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+        <i-feather name="{{icon(alert)}}" class="feather-base"></i-feather> &nbsp;
+        <span [innerHTML]="alert.message"></span>
+    </div>
+    <a class="close" (click)="removeAlert(alert)" role="button">
+        <i-feather name="x" class="feather-base"></i-feather>
+    </a>
+</div>
